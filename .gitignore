@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+preview_temp.html
+.env
+venv/
+.DS_Store
