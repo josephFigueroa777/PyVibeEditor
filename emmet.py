@@ -84,6 +84,16 @@ def emmetFunction(text_content, cursor_index):
         nuevo_indice = len(nueva_izquierda) + 3 
         return (nuevo_contenido, nuevo_indice)
     
+    # --- 13. Etiqueta: Abbreviations ---
+    elif parte_izquierda.endswith("abbr"):
+        nueva_izquierda = parte_izquierda[:-4]
+        expansion = '<abbr title=""></abbr>'
+        
+        # Insertamos el código en el centro
+        nuevo_contenido = nueva_izquierda + expansion + parte_derecha
+        nuevo_indice = len(nueva_izquierda) + 15 
+        return (nuevo_contenido, nuevo_indice)
+    
     # --- 8, 9. Etiqueta: br y hr ---
     elif parte_izquierda.endswith("r"):
         if len(parte_izquierda) >= 2 and parte_izquierda[-2] == 'h':
@@ -106,6 +116,56 @@ def emmetFunction(text_content, cursor_index):
         nuevo_contenido = nueva_izquierda + expansion + parte_derecha
         nuevo_indice = len(nueva_izquierda) + 8
         return (nuevo_contenido, nuevo_indice)
+    
+    # --- 10. Etiqueta: emphasis ---
+    elif parte_izquierda.endswith("em"):
+        nueva_izquierda = parte_izquierda[:-2]
+        expansion = "<em></em>"
         
+        # Insertamos el código en el centro
+        nuevo_contenido = nueva_izquierda + expansion + parte_derecha
+        nuevo_indice = len(nueva_izquierda) + 4
+        return (nuevo_contenido, nuevo_indice)
+    
+    # --- 11. Etiqueta: quotation (blockquote) ---
+    elif parte_izquierda.endswith("bq"):
+        nueva_izquierda = parte_izquierda[:-2]
+        expansion = '<blockquote cite=""></blockquote>'
+        
+        # Insertamos el código en el centro
+        nuevo_contenido = nueva_izquierda + expansion + parte_derecha
+        nuevo_indice = len(nueva_izquierda) + 20
+        return (nuevo_contenido, nuevo_indice)
+    
+    # --- 12. Etiqueta: quotation (q) ---
+    elif parte_izquierda.endswith("q"):
+        nueva_izquierda = parte_izquierda[:-1]
+        expansion = "<q></q>"
+        
+        # Insertamos el código en el centro
+        nuevo_contenido = nueva_izquierda + expansion + parte_derecha
+        nuevo_indice = len(nueva_izquierda) + 3
+        return (nuevo_contenido, nuevo_indice)
+
+    # --- 14. Etiqueta: cite ---
+    elif parte_izquierda.endswith("cite"):
+        nueva_izquierda = parte_izquierda[:-4]
+        expansion = "<cite></cite>"
+        
+        # Insertamos el código en el centro
+        nuevo_contenido = nueva_izquierda + expansion + parte_derecha
+        nuevo_indice = len(nueva_izquierda) + 6
+        return (nuevo_contenido, nuevo_indice) 
+    
+    # --- 14. Etiqueta: dfn ---
+    elif parte_izquierda.endswith("dfn"):
+        nueva_izquierda = parte_izquierda[:-3]
+        expansion = "<dfn></dfn>"
+        
+        # Insertamos el código en el centro
+        nuevo_contenido = nueva_izquierda + expansion + parte_derecha
+        nuevo_indice = len(nueva_izquierda) + 5
+        return (nuevo_contenido, nuevo_indice)
+       
     # Si no hay match, devolvemos todo intacto
     return (text_content, cursor_index)

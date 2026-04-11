@@ -19,7 +19,7 @@ running = True
 while running:
     pantalla.renderizarFondo()
     # print(gestor.cursor_index) test Joseph
-    # pantalla.draw_grid(pantalla.char_width, pantalla.line_height) test Joseph
+    # pantalla.draw_grid(pantalla.char_width, pantalla.line_height)
     needs_autoscroll = False
     
     # Captura de Mouse
