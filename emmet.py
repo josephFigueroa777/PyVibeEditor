@@ -157,7 +157,7 @@ def emmetFunction(text_content, cursor_index):
         nuevo_indice = len(nueva_izquierda) + 6
         return (nuevo_contenido, nuevo_indice) 
     
-    # --- 14. Etiqueta: dfn ---
+    # --- 15. Etiqueta: dfn ---
     elif parte_izquierda.endswith("dfn"):
         nueva_izquierda = parte_izquierda[:-3]
         expansion = "<dfn></dfn>"
@@ -166,6 +166,29 @@ def emmetFunction(text_content, cursor_index):
         nuevo_contenido = nueva_izquierda + expansion + parte_derecha
         nuevo_indice = len(nueva_izquierda) + 5
         return (nuevo_contenido, nuevo_indice)
-       
+    
+    # --- 16. Etiqueta: address ---
+    elif parte_izquierda.endswith("address"):
+        nueva_izquierda = parte_izquierda[:-7]
+        expansion = "<address></address>"
+        
+        # Insertamos el código en el centro
+        nuevo_contenido = nueva_izquierda + expansion + parte_derecha
+        nuevo_indice = len(nueva_izquierda) + 9
+        return (nuevo_contenido, nuevo_indice)
+    
+    # --- 17. Etiqueta: Lista ordenada ---
+    elif len(parte_izquierda) >= 3 and parte_izquierda[cursor_index - 3 : cursor_index - 1] == 'ol' and parte_izquierda.endswith("+"):
+        print(parte_izquierda[cursor_index - 3 : cursor_index - 1])
+        nueva_izquierda = parte_izquierda[:-3]
+        expansion = """<ol>
+    <li></li>
+</ol>
+"""
+    # Insertamos el código en el centro
+        nuevo_contenido = nueva_izquierda + expansion + parte_derecha
+        nuevo_indice = len(nueva_izquierda) + 9
+        return (nuevo_contenido, nuevo_indice)
+    
     # Si no hay match, devolvemos todo intacto
     return (text_content, cursor_index)

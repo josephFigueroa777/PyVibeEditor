@@ -6,6 +6,7 @@ from GestorTexto import GestorTexto
 # --- Inicialización ---
 pygame.init()
 pantalla = Pantalla(800, 600)
+pantallaTest = Pantalla(1000, 800) 
 gestor = GestorTexto()
 pygame.display.set_caption("PyVibe Editor - Joseph")
 
@@ -18,6 +19,7 @@ char_width = pantalla.char_width
 running = True
 while running:
     pantalla.renderizarFondo()
+    pantallaTest.renderizarFondo()
     # print(gestor.cursor_index) test Joseph
     # pantalla.draw_grid(pantalla.char_width, pantalla.line_height)
     needs_autoscroll = False
