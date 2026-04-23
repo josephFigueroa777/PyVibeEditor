@@ -7,11 +7,12 @@ class GestorTexto:
     Esta clase es la que maneja los eventos de teclado y del ratón. Es como el controlador en una arquitectura MVC hehehe.
 
     """
-    def __init__(self):
+    def __init__(self, name):
         """
         Inicializa el Gestor con el gran String y su cursor.
 
         """
+        self.title_file = name
         self.text_content = ""
         self.cursor_index = 0
 

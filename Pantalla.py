@@ -9,7 +9,7 @@ class Pantalla:
         width (int): El ancho de la ventana.
         height (int): El alto de la ventana.
     """
-    def __init__(self, width, height):
+    def __init__(self, width, height, superficie):
         """
         Inicializa la pantalla con las dimensiones, colores y tipografías
 
@@ -19,7 +19,7 @@ class Pantalla:
         """
         self.width = width
         self.height = height
-        self.pantallaPygame = pygame.display.set_mode((self.width, self.height))
+        self.pantallaPygame = superficie
         
         # --- Colores ---
         self.BG_COLOR = (24, 24, 24)
@@ -67,12 +67,12 @@ class Pantalla:
             pygame.draw.line(self.pantallaPygame, color, (x_off, y), (x_off + self.width, y), line_thickness)
             y += cell_height
     
-    def renderizarFondo(self):
+    def renderizarFondo(self, color):
         """
         Dibuja el fondo de un color.
 
         """
-        self.pantallaPygame.fill(self.BG_COLOR)
+        self.pantallaPygame.fill(color)
     
     def resaltar_linea_actual(self, y, line_height):
         """
